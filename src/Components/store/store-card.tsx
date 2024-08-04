@@ -1,20 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import { StoreType } from '../../queries/getStores';
 import { Link } from '@tanstack/react-router';
 
 export default function StoreCard({ store }: { store: StoreType }) {
+    const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
-    const [isFavorite, setIsFavorite] = useState(false);
-
-
+    useEffect(() => {
+        const isFavoriteStore = localStorage.getItem(store.id.toString()) === store.id.toString();
+        setIsFavorite(isFavoriteStore);
+    }, [store.id]);
 
     const handleFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
-        setIsFavorite(!isFavorite);
-    };
 
-    const handleCardClick = () => {
-        // window.location.href = store.homepage;
+        if (!isFavorite) {
+            localStorage.setItem(store.id.toString(), store.id.toString());
+        } else {
+            localStorage.removeItem(store.id.toString());
+        }
+        setIsFavorite(!isFavorite);
     };
 
     const getCashbackDisplay = () => {
@@ -30,7 +34,7 @@ export default function StoreCard({ store }: { store: StoreType }) {
     };
 
     return (
-        <Link to={`${store.homepage}`} target='_blank' className="border rounded-lg overflow-hidden cursor-pointer  duration-200 relative p-4 hover:shadow-xl" >
+        <div className="border rounded-lg overflow-hidden duration-200 relative p-4 hover:shadow-xl">
             <div className="flex justify-between items-center">
                 <img src={store.logo} alt={`${store.name} logo`} className="h-16 w-16 object-contain mx-auto" />
                 <button
@@ -40,10 +44,12 @@ export default function StoreCard({ store }: { store: StoreType }) {
                     {isFavorite ? '❤️' : '♡'}
                 </button>
             </div>
-            <div className="mt-4 text-center">
-                <h2 className="text-lg font-semibold">{store.name}</h2>
-                <p className="text-gray-600 mt-2">{getCashbackDisplay()}</p>
-            </div>
-        </Link>
-    )
+            <Link to={store.homepage} target='_blank'>
+                <div className="mt-4 text-center">
+                    <h2 className="text-lg font-semibold">{store.name}</h2>
+                    <p className="text-gray-600 mt-2">{getCashbackDisplay()}</p>
+                </div>
+            </Link>
+        </div>
+    );
 }
