@@ -6,7 +6,14 @@ The task involves developing a web application that allows users to browse throu
 https://github.com/Parth002933v/react-data-filtering.git
 
 ## Video Demo
-//todo: link
+https://github.com/user-attachments/assets/b35d1244-66ed-4b7b-9c8e-07e4295cad25
+
+
+
+
+
+
+
 
 ### Setting Up and run the Project locally
 
