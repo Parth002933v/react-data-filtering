@@ -48,7 +48,7 @@ export default function Categories() {
 
 
                             {getChildCategories(parentCategory.id).map(childCategory => (
-                              <Link to="/category/$id" params={{ id: childCategory.id.toString() }} mask={{ to: `/category/${childCategory.name}`, unmaskOnReload: true }} key={childCategory.id} className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left rounded-lg hover:bg-gray-200 focus:outline-none hover:cursor-pointer focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75">
+                              <Link to="/category/$id" activeProps={{ className: "bg-gray-200" }} params={{ id: childCategory.id.toString() }} mask={{ to: `/category/${childCategory.name}`, unmaskOnReload: true }} key={childCategory.id} className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left rounded-lg hover:bg-gray-200 focus:outline-none hover:cursor-pointer focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75">
                                 <span>{childCategory.name}</span>
                               </Link>
                             ))}
