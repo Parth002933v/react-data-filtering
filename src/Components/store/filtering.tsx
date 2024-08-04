@@ -28,12 +28,9 @@ const alphabets = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + 
 alphabets.unshift("All");
 
 export default function Filtering({ useNavigate, useSearch }: { useNavigate: UseNavigateResult<"">, useSearch: storeFilterType }) {
-
     const [selectedSorting, setSelectedSort] = useState<sortByType | null>(null);
     const [selectedStatusFilter, setStatusFilter] = useState<sortByType | null>(null);
     const [enabled, setEnabled] = useState(false)
-
-
 
     const ref = useRef<HTMLInputElement>(null)
 

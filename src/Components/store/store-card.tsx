@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { StoreType } from '../../queries/getStores';
+import { Link } from '@tanstack/react-router';
 
 export default function StoreCard({ store }: { store: StoreType }) {
 
@@ -29,10 +30,7 @@ export default function StoreCard({ store }: { store: StoreType }) {
     };
 
     return (
-        <div
-            className="border rounded-lg overflow-hidden cursor-pointer  duration-200 relative p-4 hover:shadow-xl"
-            onClick={handleCardClick}
-        >
+        <Link to={`${store.homepage}`} target='_blank' className="border rounded-lg overflow-hidden cursor-pointer  duration-200 relative p-4 hover:shadow-xl" >
             <div className="flex justify-between items-center">
                 <img src={store.logo} alt={`${store.name} logo`} className="h-16 w-16 object-contain mx-auto" />
                 <button
@@ -46,6 +44,6 @@ export default function StoreCard({ store }: { store: StoreType }) {
                 <h2 className="text-lg font-semibold">{store.name}</h2>
                 <p className="text-gray-600 mt-2">{getCashbackDisplay()}</p>
             </div>
-        </div>
+        </Link>
     )
 }
