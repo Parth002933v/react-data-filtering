@@ -27,6 +27,6 @@ Note:
     "preview": "vite preview",
     "start_api": "npx json-server db.json -p 3001",
     "dev": "vite",
-    "start": "concurrently --names \"react app, apis\" \"pnpm run dev\"  \"npm run start_api\""
+    "start": "concurrently --names \"react app, apis\" \"npm run dev\"  \"npm run start_api\""
   },
 ```
