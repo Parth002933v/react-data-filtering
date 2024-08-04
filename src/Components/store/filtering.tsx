@@ -3,9 +3,8 @@ import React, { FormEvent, Fragment, useEffect, useRef } from 'react'
 import { Checkbox, Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react'
 import { useState } from 'react'
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
-import { getRouteApi, Link, useNavigate, UseNavigateResult } from '@tanstack/react-router';
-import { storeFilterSchema, storeFilterType } from '../../routes/_rootLayout';
-import { z } from 'zod';
+import { Link, UseNavigateResult } from '@tanstack/react-router';
+import { storeFilterType } from '../../routes/_rootLayout';
 
 type sortByType = {
     id: string

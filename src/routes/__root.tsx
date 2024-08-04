@@ -1,4 +1,4 @@
-import { createRootRoute, createRootRouteWithContext, Outlet } from '@tanstack/react-router'
+import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 import NavBar from '../Components/Navbar'
 import { QueryClient } from '@tanstack/react-query'

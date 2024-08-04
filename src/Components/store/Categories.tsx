@@ -2,10 +2,8 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { getCategories } from "../../queries/getCategories";
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
-import { getRouteApi, Link, useMatch } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 
-
-const categoryRoute = getRouteApi('/_rootLayout/category/$id')
 
 export default function Categories() {
 

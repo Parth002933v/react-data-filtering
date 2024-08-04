@@ -1,11 +1,7 @@
-import { useInfiniteQuery, useSuspenseInfiniteQuery, useSuspenseQuery } from "@tanstack/react-query";
-import { getPagginatedStores, Stores } from "../../queries/getStores";
+import { getPagginatedStores } from "../../queries/getStores";
 import StoreCard from "./store-card";
-import { getRouteApi } from "@tanstack/react-router";
 import { useInView } from "react-intersection-observer";
-import { Fragment, useEffect } from "react";
-import Filtering from "./filtering";
-import axios from "axios";
+import { useEffect } from "react";
 
 
 // import { storeFilterSchema } from './../../routes/_category.index'

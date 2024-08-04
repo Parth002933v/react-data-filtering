@@ -1,5 +1,4 @@
 import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
-import { getRouteApi } from "@tanstack/react-router";
 import axios from "axios";
 
 // export const getStores = queryOptions({

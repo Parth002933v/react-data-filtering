@@ -1,4 +1,4 @@
-import { keepPreviousData, queryOptions } from "@tanstack/react-query";
+import { queryOptions } from "@tanstack/react-query";
 
 export const getCategories = queryOptions({
     queryKey: ["GET_CATEGORIES"],
