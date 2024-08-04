@@ -7,7 +7,8 @@ import { z } from 'zod'
 export const storeFilterSchema = z.object({
   _sort: z.string().min(1).optional(),
   cashback_enabled: z.number().catch(0).optional(),
-  nameSearch: z.string().catch("").optional()
+  nameSearch: z.string().catch("").optional(),
+  Alphabetical: z.string().catch("").optional()
   // is_promoted: z.number().min(0).max(1).catch(0).optional(),
   // is_sharable: z.number().min(0).max(1).catch(0).optional(),
 

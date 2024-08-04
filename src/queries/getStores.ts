@@ -32,13 +32,14 @@ import axios from "axios";
 export const getPagginatedStores = ({ queryKey }: { queryKey: (string | number | undefined)[] }) => useSuspenseInfiniteQuery({
     queryKey: queryKey,
     queryFn: async ({ pageParam }) => {
-        const [_, cashback_enabled, _sort, nameSearch, category] = queryKey
+        const [_, cashback_enabled, _sort, nameSearch, category, Alphabetical] = queryKey
 
         const filterParams = new URLSearchParams();
         if (cashback_enabled) filterParams.append("cashback_enabled", cashback_enabled.toString())
         if (_sort) filterParams.append("_sort", _sort.toString())
         if (nameSearch) filterParams.append("name_like", nameSearch.toString())
         if (category) filterParams.append("cats", category.toString())
+        if (Alphabetical) filterParams.append("name_like", Alphabetical.toString())
 
         await new Promise((resolve) => setTimeout(resolve, 500)); // simulate delay
 

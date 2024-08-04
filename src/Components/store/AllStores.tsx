@@ -16,11 +16,9 @@ type storeFilter = z.infer<typeof storeFilterSchema>
 
 // const route = getRouteApi('/_category/category')
 export default function AllStores({ searchQuery, category }: { searchQuery: storeFilter, category?: string }) {
-  const { cashback_enabled, _sort, nameSearch } = searchQuery
+  const { cashback_enabled, _sort, nameSearch, Alphabetical } = searchQuery
 
   // const { data: stores } = useSuspenseQuery(getStores)
-
-
 
   // const { data: storess, fetchNextPage, isFetchingNextPage} = useSuspenseInfiniteQuery(getPagginatedStores)
   const {
@@ -28,7 +26,7 @@ export default function AllStores({ searchQuery, category }: { searchQuery: stor
     fetchNextPage,
     isFetchingNextPage
 
-  } = getPagginatedStores({ queryKey: ["GET_PAGGINATE", cashback_enabled, _sort, nameSearch, category] })
+  } = getPagginatedStores({ queryKey: ["GET_PAGGINATE", cashback_enabled, _sort, nameSearch, category, Alphabetical] })
 
 
   const { ref, inView } = useInView()

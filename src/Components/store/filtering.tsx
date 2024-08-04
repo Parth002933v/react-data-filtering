@@ -4,7 +4,7 @@ import React, { FormEvent, Fragment, useEffect, useRef } from 'react'
 import { Checkbox, Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react'
 import { useState } from 'react'
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
-import { getRouteApi, useNavigate } from '@tanstack/react-router';
+import { getRouteApi, Link, useNavigate } from '@tanstack/react-router';
 // import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 
 
@@ -14,6 +14,9 @@ const sortBy = [
     { id: "clicks", name: 'Popularity' },
     { id: "cashback_amount", name: 'Cashback' }
 ]
+
+const alphabets = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+alphabets.unshift("All");
 
 const route = getRouteApi('/_category/')
 export default function Filtering() {
@@ -98,8 +101,20 @@ export default function Filtering() {
                 <div className='text-sm'>Show Stores With Cashback</div>
             </div>
 
-            <div>
+            <div className='flex w-full font-serif  text-sm my-2 py-2'>
+                {alphabets.map((a) => <>
+                    {
+                        a == "All"
+                            ? <Link search={{ Alphabetical: undefined }} className='border-b-2 px-1 border-transparent hover:border-b-2 hover:border-black duration-200 cursor-pointer'>
+                                {a}
+                            </Link>
+                            : <Link search={{ Alphabetical: `^${a}` }} className='border-b-2 px-1 border-transparent hover:border-b-2 hover:border-black duration-200 cursor-pointer'>
+                                {a}
+                            </Link>
+                    }
+                </>
 
+                )}
             </div>
         </>
     )

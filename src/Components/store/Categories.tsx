@@ -29,7 +29,7 @@ export function Categories() {
               {
                 getChildCategories(parentCategory.id).length == 0 ?
                   // if no childern found 
-                  <Link to="/category/$id" params={{ id: parentCategory.id.toString() }} mask={{ to: `/category/${parentCategory.name}` }} key={parentCategory.id} className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left rounded-lg hover:bg-gray-200 focus:outline-none hover:cursor-pointer focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75">
+                  <Link to="/category/$id" params={{ id: parentCategory.id.toString() }} mask={{ to: `/category/${parentCategory.name}`, unmaskOnReload: true }} key={parentCategory.id} className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left rounded-lg hover:bg-gray-200 focus:outline-none hover:cursor-pointer focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75">
                     <span>{parentCategory.name}</span>
                   </Link> :
 
@@ -47,7 +47,7 @@ export function Categories() {
 
 
                             {getChildCategories(parentCategory.id).map(childCategory => (
-                              <Link to="/category/$id" params={{ id: childCategory.id.toString() }} mask={{ to: `/category/${childCategory.name}` }} key={childCategory.id} className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left rounded-lg hover:bg-gray-200 focus:outline-none hover:cursor-pointer focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75">
+                              <Link to="/category/$id" params={{ id: childCategory.id.toString() }} mask={{ to: `/category/${childCategory.name}`, unmaskOnReload: true }} key={childCategory.id} className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left rounded-lg hover:bg-gray-200 focus:outline-none hover:cursor-pointer focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75">
                                 <span>{childCategory.name}</span>
                               </Link>
                             ))}

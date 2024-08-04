@@ -1,7 +1,8 @@
-import { Disclosure, Menu, Transition, DisclosurePanel, DisclosureButton } from "@headlessui/react";
+import { Disclosure, Menu, Transition, DisclosurePanel, DisclosureButton, MenuButton } from "@headlessui/react";
 import { classNames } from '../../utils/utils';
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
+import { Link } from "@tanstack/react-router";
 
 interface User {
     name: string;
@@ -51,18 +52,27 @@ export default function NavBar() {
                                 </div>
                                 <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                                     {navigation.map((item) => (
-                                        <a
-                                            key={item.name}
-                                            href={item.href}
-                                            className={classNames(item.current
-                                                ? "border-indigo-500 text-gray-900"
-                                                : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
-                                                "inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium"
-                                            )}
+
+                                        <Link key={item.name} to="/" className={classNames(item.current
+                                            ? "border-indigo-500 text-gray-900"
+                                            : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
+                                            "inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium")}
                                             aria-current={item.current ? "page" : undefined}
                                         >
                                             {item.name}
-                                        </a>
+                                        </Link>
+                                        // <a
+                                        //     key={item.name}
+                                        //     href={item.href}
+                                        // className={classNames(item.current
+                                        //     ? "border-indigo-500 text-gray-900"
+                                        //     : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
+                                        //     "inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium"
+                                        // )}
+                                        //     aria-current={item.current ? "page" : undefined}
+                                        // >
+                                        //     {item.name}
+                                        // </a>
                                     ))}
                                 </div>
                             </div>
@@ -79,7 +89,7 @@ export default function NavBar() {
                                 {/* Profile dropdown */}
                                 <Menu as="div" className="relative ml-3">
                                     <div>
-                                        <Menu.Button className="relative flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                        <MenuButton className="relative flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                                             <span className="absolute -inset-1.5" />
                                             <span className="sr-only">Open user menu</span>
                                             <img
@@ -87,7 +97,7 @@ export default function NavBar() {
                                                 src={user.imageUrl}
                                                 alt=""
                                             />
-                                        </Menu.Button>
+                                        </MenuButton>
                                     </div>
                                     <Transition
                                         as={Fragment}
