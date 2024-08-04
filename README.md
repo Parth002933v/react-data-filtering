@@ -1,30 +1,32 @@
-# React + TypeScript + Vite
+## Project Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The task involves developing a web application that allows users to browse through a list of stores categorized by various parameters. Users should be able to filter, sort, and search for stores based on different criteria. Additionally, they should have the ability to bookmark their favorite stores, with these preferences stored locally and reflected in the UI.
 
-Currently, two official plugins are available:
+## Github Repo:
+https://github.com/Parth002933v/react-data-filtering.git
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Video Demo
+//todo: link
 
-## Expanding the ESLint configuration
+### Setting Up and run the Project locally
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+follow these steps:
 
-- Configure the top-level `parserOptions` property like this:
+1. Clone the repository and navigate to the project folder.
+2. Run `npm install` ( I used `pnpm install` ).
+3. Start the project using `npm run start` ( I used `pnpm run start`).
+4. Access the React website at http://localhost:5173/ and the API at http://localhost:3001.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
+Note: 
+  If you are not using `pnpm` change the script in package.json
+  
+   ```
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "start_api": "npx json-server db.json -p 3001",
+    "dev": "vite",
+    "start": "concurrently --names \"react app, apis\" \"npm run dev\"  \"npm run start_api\""
   },
-}
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
