@@ -31,17 +31,22 @@ import axios from "axios";
 
 export const getPagginatedStores = ({ queryKey }: { queryKey: (string | number | undefined)[] }) => useSuspenseInfiniteQuery({
     queryKey: queryKey,
+    // staleTime: 0,
     queryFn: async ({ pageParam }) => {
-        const [_, cashback_enabled, _sort, nameSearch, category, Alphabetical] = queryKey
+        const [_, cashback_enabled, _sort, nameSearch, category, Alphabetical, status] = queryKey
 
         const filterParams = new URLSearchParams();
         if (cashback_enabled) filterParams.append("cashback_enabled", cashback_enabled.toString())
-        if (_sort) filterParams.append("_sort", _sort.toString())
+        if (_sort) { filterParams.append("_sort", _sort.toString()), filterParams.append("_order", "desc") }
         if (nameSearch) filterParams.append("name_like", nameSearch.toString())
         if (category) filterParams.append("cats", category.toString())
         if (Alphabetical) filterParams.append("name_like", Alphabetical.toString())
+        if (status) filterParams.append("status", status.toString())
 
         await new Promise((resolve) => setTimeout(resolve, 500)); // simulate delay
+
+        // console.log(filterParams.entries.toString(), "filterParams");
+
 
         const stores: Stores = await ((await axios.get(`http://localhost:3001/stores?_page=${pageParam}&_limit=18&${filterParams}`)).data)
 

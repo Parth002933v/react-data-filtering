@@ -11,51 +11,51 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as CategoryImport } from './routes/_category'
-import { Route as CategoryIndexImport } from './routes/_category.index'
-import { Route as CategoryCategoryIdImport } from './routes/_category.category.$id'
+import { Route as RootLayoutImport } from './routes/_rootLayout'
+import { Route as RootLayoutIndexImport } from './routes/_rootLayout.index'
+import { Route as RootLayoutCategoryIdImport } from './routes/_rootLayout.category.$id'
 
 // Create/Update Routes
 
-const CategoryRoute = CategoryImport.update({
-  id: '/_category',
+const RootLayoutRoute = RootLayoutImport.update({
+  id: '/_rootLayout',
   getParentRoute: () => rootRoute,
 } as any)
 
-const CategoryIndexRoute = CategoryIndexImport.update({
+const RootLayoutIndexRoute = RootLayoutIndexImport.update({
   path: '/',
-  getParentRoute: () => CategoryRoute,
+  getParentRoute: () => RootLayoutRoute,
 } as any)
 
-const CategoryCategoryIdRoute = CategoryCategoryIdImport.update({
+const RootLayoutCategoryIdRoute = RootLayoutCategoryIdImport.update({
   path: '/category/$id',
-  getParentRoute: () => CategoryRoute,
+  getParentRoute: () => RootLayoutRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_category': {
-      id: '/_category'
+    '/_rootLayout': {
+      id: '/_rootLayout'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof CategoryImport
+      preLoaderRoute: typeof RootLayoutImport
       parentRoute: typeof rootRoute
     }
-    '/_category/': {
-      id: '/_category/'
+    '/_rootLayout/': {
+      id: '/_rootLayout/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof CategoryIndexImport
-      parentRoute: typeof CategoryImport
+      preLoaderRoute: typeof RootLayoutIndexImport
+      parentRoute: typeof RootLayoutImport
     }
-    '/_category/category/$id': {
-      id: '/_category/category/$id'
+    '/_rootLayout/category/$id': {
+      id: '/_rootLayout/category/$id'
       path: '/category/$id'
       fullPath: '/category/$id'
-      preLoaderRoute: typeof CategoryCategoryIdImport
-      parentRoute: typeof CategoryImport
+      preLoaderRoute: typeof RootLayoutCategoryIdImport
+      parentRoute: typeof RootLayoutImport
     }
   }
 }
@@ -63,9 +63,9 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren({
-  CategoryRoute: CategoryRoute.addChildren({
-    CategoryIndexRoute,
-    CategoryCategoryIdRoute,
+  RootLayoutRoute: RootLayoutRoute.addChildren({
+    RootLayoutIndexRoute,
+    RootLayoutCategoryIdRoute,
   }),
 })
 
@@ -77,23 +77,23 @@ export const routeTree = rootRoute.addChildren({
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/_category"
+        "/_rootLayout"
       ]
     },
-    "/_category": {
-      "filePath": "_category.tsx",
+    "/_rootLayout": {
+      "filePath": "_rootLayout.tsx",
       "children": [
-        "/_category/",
-        "/_category/category/$id"
+        "/_rootLayout/",
+        "/_rootLayout/category/$id"
       ]
     },
-    "/_category/": {
-      "filePath": "_category.index.tsx",
-      "parent": "/_category"
+    "/_rootLayout/": {
+      "filePath": "_rootLayout.index.tsx",
+      "parent": "/_rootLayout"
     },
-    "/_category/category/$id": {
-      "filePath": "_category.category.$id.tsx",
-      "parent": "/_category"
+    "/_rootLayout/category/$id": {
+      "filePath": "_rootLayout.category.$id.tsx",
+      "parent": "/_rootLayout"
     }
   }
 }

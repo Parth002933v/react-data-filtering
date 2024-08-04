@@ -8,15 +8,17 @@ import Filtering from "./filtering";
 import axios from "axios";
 
 
-import { storeFilterSchema } from './../../routes/_category.index'
+// import { storeFilterSchema } from './../../routes/_category.index'
 import { z } from "zod";
+import { storeFilterSchema } from "../../routes/_rootLayout";
+// import { storeFilterSchema } from "../../routes/_rootLayout.index";
 
 
 type storeFilter = z.infer<typeof storeFilterSchema>
 
 // const route = getRouteApi('/_category/category')
 export default function AllStores({ searchQuery, category }: { searchQuery: storeFilter, category?: string }) {
-  const { cashback_enabled, _sort, nameSearch, Alphabetical } = searchQuery
+  const { cashback_enabled, _sort, nameSearch, Alphabetical, status } = searchQuery
 
   // const { data: stores } = useSuspenseQuery(getStores)
 
@@ -26,7 +28,7 @@ export default function AllStores({ searchQuery, category }: { searchQuery: stor
     fetchNextPage,
     isFetchingNextPage
 
-  } = getPagginatedStores({ queryKey: ["GET_PAGGINATE", cashback_enabled, _sort, nameSearch, category, Alphabetical] })
+  } = getPagginatedStores({ queryKey: ["GET_PAGGINATE", cashback_enabled, _sort, nameSearch, category, Alphabetical, status] })
 
 
   const { ref, inView } = useInView()
