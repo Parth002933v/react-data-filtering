@@ -1,7 +1,7 @@
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 // import StoreLayout from '../Components/store/index'
 import Header from '../Components/store/header'
-import Categories from '../Components/store/Categories'
+import { Categories } from '../Components/store/Categories'
 import Filtering from '../Components/store/filtering'
 
 
