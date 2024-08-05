@@ -2,11 +2,20 @@
 
 The task involves developing a web application that allows users to browse through a list of stores categorized by various parameters. Users should be able to filter, sort, and search for stores based on different criteria. Additionally, they should have the ability to bookmark their favorite stores, with these preferences stored locally and reflected in the UI.
 
+original Templet : https://github.com/enacton-tech/react-intermediate.git
+
 ## Github Repo:
 https://github.com/Parth002933v/react-data-filtering.git
 
 ## Video Demo
-//todo: link
+https://github.com/user-attachments/assets/b35d1244-66ed-4b7b-9c8e-07e4295cad25
+
+
+
+
+
+
+
 
 ### Setting Up and run the Project locally
 
