@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
 import AllStoresOutlet from '../Components/store/AllStores'
-import { storeFilterSchema } from './_rootLayout'
+import { storeFilterSchema } from './_layout'
 
-export const Route = createFileRoute('/_rootLayout/category/$id')({
+export const Route = createFileRoute('/_layout/category/$id')({
   component: CategoryByID,
   validateSearch: (search) => storeFilterSchema.parse(search),
 

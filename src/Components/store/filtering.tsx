@@ -4,7 +4,7 @@ import { Checkbox, Listbox, ListboxButton, ListboxOption, ListboxOptions } from 
 import { useState } from 'react'
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import { Link, UseNavigateResult } from '@tanstack/react-router';
-import { storeFilterType } from '../../routes/_rootLayout';
+import { storeFilterType } from '../../routes/_layout';
 
 type sortByType = {
     id: string
@@ -27,6 +27,7 @@ const alphabets = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + 
 alphabets.unshift("All");
 
 export default function Filtering({ useNavigate, useSearch }: { useNavigate: UseNavigateResult<"">, useSearch: storeFilterType }) {
+
     const [selectedSorting, setSelectedSort] = useState<sortByType | null>(null);
     const [selectedStatusFilter, setStatusFilter] = useState<sortByType | null>(null);
     const [enabled, setEnabled] = useState(false)
@@ -42,12 +43,6 @@ export default function Filtering({ useNavigate, useSearch }: { useNavigate: Use
     }
 
     useEffect(() => {
-
-        // serach._sort = selectedSorting.id
-
-        // if(serach._sort){}
-        // setSelectedSort(sortBy[serach._sort ] )
-
         navigate({
             search: (prev) => ({
                 ...prev,
@@ -69,14 +64,11 @@ export default function Filtering({ useNavigate, useSearch }: { useNavigate: Use
                 <FilterByStatus selectedStatusFilter={selectedStatusFilter} setStatusFilter={setStatusFilter} />
                 <SortBy selectedSorting={selectedSorting} setSelectedSort={setSelectedSort} />
 
-
             </div>
-
 
             <div className='flex flex-auto items-center gap-2  '>
                 <CheckBox enabled={enabled} setEnabled={setEnabled} />
             </div>
-
 
             {/* alphabets */}
             <div className='flex w-full font-serif  text-sm my-2 py-2'>
@@ -87,8 +79,6 @@ export default function Filtering({ useNavigate, useSearch }: { useNavigate: Use
         </>
     )
 }
-
-
 
 
 

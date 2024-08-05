@@ -2,17 +2,12 @@ import { getPagginatedStores } from "../../queries/getStores";
 import StoreCard from "./store-card";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
-
-
-// import { storeFilterSchema } from './../../routes/_category.index'
 import { z } from "zod";
-import { storeFilterSchema } from "../../routes/_rootLayout";
-// import { storeFilterSchema } from "../../routes/_rootLayout.index";
+import { storeFilterSchema } from "../../routes/_layout";
 
 
 type storeFilter = z.infer<typeof storeFilterSchema>
 
-// const route = getRouteApi('/_category/category')
 export default function AllStores({ searchQuery, category }: { searchQuery: storeFilter, category?: string }) {
   const { cashback_enabled, _sort, nameSearch, Alphabetical, status } = searchQuery
 
@@ -23,7 +18,6 @@ export default function AllStores({ searchQuery, category }: { searchQuery: stor
     data: storess,
     fetchNextPage,
     isFetchingNextPage
-
   } = getPagginatedStores({ queryKey: ["GET_PAGGINATE", cashback_enabled, _sort, nameSearch, category, Alphabetical, status] })
 
 
@@ -55,6 +49,7 @@ export default function AllStores({ searchQuery, category }: { searchQuery: stor
                 </svg>
               )}
           </div>
+          
         </div>
       )
       )}

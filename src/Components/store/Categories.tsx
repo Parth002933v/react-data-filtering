@@ -7,8 +7,6 @@ import { Link } from "@tanstack/react-router";
 
 export default function Categories() {
 
-  // const { id } = useMatch({ from: "/_rootLayout/category/$id" }).params
-  // const { id } = categoryRoute.useParams()
   const { data: categories } = useSuspenseQuery(getCategories)
 
 

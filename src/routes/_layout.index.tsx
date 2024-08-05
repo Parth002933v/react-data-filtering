@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import AllStoresOutlet from '../Components/store/AllStores'
 
-export const Route = createFileRoute('/_rootLayout/')({
+export const Route = createFileRoute('/_layout/')({
   component: Stores,
 })
 

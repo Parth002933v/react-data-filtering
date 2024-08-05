@@ -17,15 +17,12 @@ export const storeFilterSchema = z.object({
   status: z.string().catch("publish").optional(),
   // is_promoted: z.number().min(0).max(1).catch(0).optional(),
   // is_sharable: z.number().min(0).max(1).catch(0).optional(),
-
-  //todo: status{active: publish, coming soon : draft, discontinue: trash}
-  // name_like: z.string().catch(" ").optional()
 })
 
 export type storeFilterType = z.infer<typeof storeFilterSchema>
 
 
-export const Route = createFileRoute('/_rootLayout')({
+export const Route = createFileRoute('/_layout')({
   component: CategoryLayout,
   loader: ({ context: { queryClient } }) => queryClient.ensureQueryData(getCategories),
   validateSearch: (search) => storeFilterSchema.parse(search),
@@ -34,8 +31,6 @@ export const Route = createFileRoute('/_rootLayout')({
 
 
 export function CategoryLayout() {
-
-  // const { } = Route.useParams()
 
   const navigate = Route.useNavigate();
   const serach = Route.useSearch()
