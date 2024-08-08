@@ -8,10 +8,7 @@ original Templet : https://github.com/enacton-tech/react-intermediate.git
 https://github.com/Parth002933v/react-data-filtering.git
 
 ## Video Demo
-https://github.com/user-attachments/assets/b35d1244-66ed-4b7b-9c8e-07e4295cad25
-
-
-
+https://github.com/user-attachments/assets/3ae6fc2b-f8ef-4fe4-bc47-89e9f43d5669
 
 
 
