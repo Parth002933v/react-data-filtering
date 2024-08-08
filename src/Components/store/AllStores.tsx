@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { memo, useEffect } from "react";
 import { z } from "zod";
 import { storeFilterSchema } from "../../routes/_layout";
-import { useLoaderData } from "@tanstack/react-router";
+import { useLoaderData, useRouterState } from "@tanstack/react-router";
 import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 
 
@@ -61,9 +61,13 @@ type storeFilter = z.infer<typeof storeFilterSchema>
 //   );
 // };
 
+
+
+
 export default memo(({ searchQuery, category }: { searchQuery: storeFilter, category?: string }) => {
   const { cashback_enabled, _sort, nameSearch, Alphabetical, status } = searchQuery
 
+  const isLoading = useRouterState({ select: (s) => s.status === 'pending' })
 
 
   // const { } = useLoaderData({ from: "/_layout/" })
@@ -91,6 +95,17 @@ export default memo(({ searchQuery, category }: { searchQuery: storeFilter, cate
       fetchNextPage()
     }
   }, [fetchNextPage, inView])
+
+  // if (isLoading) {
+  //   return (
+  //     <svg xmlns="http://www.w3.org/2000/svg" className="w-10 animate-spin fill-blue-600 block mx-auto"
+  //       viewBox="0 0 24 24">
+  //       <path
+  //         d="M12 22c5.421 0 10-4.579 10-10h-2c0 4.337-3.663 8-8 8s-8-3.663-8-8c0-4.336 3.663-8 8-8V2C6.579 2 2 6.58 2 12c0 5.421 4.579 10 10 10z"
+  //         data-original="#000000" />
+  //     </svg>
+  //   );
+  // }
 
   return (
     <div >

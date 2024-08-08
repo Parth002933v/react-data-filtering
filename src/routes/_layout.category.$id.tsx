@@ -11,12 +11,12 @@ export const Route = createFileRoute('/_layout/category/$id')({
 
     const { cashback_enabled, _sort, nameSearch, Alphabetical, status } = search
 
-    const { id: category } = params
+    const category = params.id
+
     return queryClient.prefetchInfiniteQuery(getPagginatedStoress({
       queryKey: ["GET_PAGGINATE", cashback_enabled, _sort, nameSearch, category, Alphabetical, status]
     }))
-
-  }
+  },
 })
 
 
@@ -25,7 +25,6 @@ function CategoryByID() {
   const searchQuery = Route.useSearch()
   const { id } = Route.useParams()
 
-  // console.log("id:", id);
 
   return <AllStoresOutlet searchQuery={searchQuery} category={id} />
 }

@@ -24,7 +24,7 @@ export type storeFilterType = z.infer<typeof storeFilterSchema>
 
 export const Route = createFileRoute('/_layout')({
   component: CategoryLayout,
-  loader: ({ context: { queryClient } }) => queryClient.ensureQueryData(getCategories),
+  loader: ({ context: { queryClient } }) => queryClient.prefetchQuery(getCategories),
   validateSearch: (search) => storeFilterSchema.parse(search),
 
 })
