@@ -1,9 +1,11 @@
-import { getPagginatedStores } from "../../queries/getStores";
+import { getPagginatedStoress } from "../../queries/getStores";
 import StoreCard from "./store-card";
 import { useInView } from "react-intersection-observer";
 import { memo, useEffect } from "react";
 import { z } from "zod";
 import { storeFilterSchema } from "../../routes/_layout";
+import { useLoaderData } from "@tanstack/react-router";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 
 
 type storeFilter = z.infer<typeof storeFilterSchema>
@@ -62,14 +64,23 @@ type storeFilter = z.infer<typeof storeFilterSchema>
 export default memo(({ searchQuery, category }: { searchQuery: storeFilter, category?: string }) => {
   const { cashback_enabled, _sort, nameSearch, Alphabetical, status } = searchQuery
 
+
+
+  // const { } = useLoaderData({ from: "/_layout/" })
+
   // const { data: stores } = useSuspenseQuery(getStores)
 
-  // const { data: storess, fetchNextPage, isFetchingNextPage} = useSuspenseInfiniteQuery(getPagginatedStores)
-  const {
-    data: storess,
-    fetchNextPage,
-    isFetchingNextPage
-  } = getPagginatedStores({ queryKey: ["GET_PAGGINATE", cashback_enabled, _sort, nameSearch, category, Alphabetical, status] })
+  const { data: storess, fetchNextPage, isFetchingNextPage } = useSuspenseInfiniteQuery(
+    getPagginatedStoress({
+      queryKey: ["GET_PAGGINATE", cashback_enabled, _sort, nameSearch, category, Alphabetical, status]
+    })
+  )
+
+  // const {
+  //   data: storess,
+  //   fetchNextPage,
+  //   isFetchingNextPage
+  // } = getPagginatedStores({ queryKey: ["GET_PAGGINATE", cashback_enabled, _sort, nameSearch, category, Alphabetical, status] })
 
 
   const { ref, inView } = useInView()

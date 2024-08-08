@@ -1,4 +1,4 @@
-import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
+import { infiniteQueryOptions, useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 // export const getStores = queryOptions({
@@ -28,32 +28,41 @@ import axios from "axios";
 
 // const route = getRouteApi('/_store/')
 
-export const getPagginatedStores = ({ queryKey }: { queryKey: (string | number | undefined)[] }) => useSuspenseInfiniteQuery({
-    queryKey: queryKey,
-    // staleTime: 0,
-    queryFn: async ({ pageParam, queryKey }) => {
-        const [_, cashback_enabled, _sort, nameSearch, category, Alphabetical, status] = queryKey
 
-        const filterParams = new URLSearchParams();
-        if (cashback_enabled) filterParams.append("cashback_enabled", cashback_enabled.toString())
-        if (_sort) { filterParams.append("_sort", _sort.toString()), filterParams.append("_order", "desc") }
-        if (nameSearch) filterParams.append("name_like", nameSearch.toString())
-        if (category) filterParams.append("cats", category.toString())
-        if (Alphabetical) filterParams.append("name_like", Alphabetical.toString())
-        if (status) filterParams.append("status", status.toString())
 
-        await new Promise((resolve) => setTimeout(resolve, 500)); // simulate delay
+export function getPagginatedStoress({ queryKey }: { queryKey: (string | number | undefined)[] }) {
 
-        const stores: Stores = await ((await axios.get(`http://localhost:3001/stores?_page=${pageParam}&_limit=18&${filterParams}`)).data)
+    return infiniteQueryOptions({
+        queryKey: queryKey,
+        
+        // staleTime: 0,
+        queryFn: async ({ pageParam, queryKey }) => {
+            const [_, cashback_enabled, _sort, nameSearch, category, Alphabetical, status] = queryKey
 
-        return {
-            data: stores,
-            nextPage: stores.length > 0 ? pageParam + 1 : null,
-        }
-    },
-    initialPageParam: 1,
-    getNextPageParam: (lastpage) => lastpage.nextPage,
-})
+            const filterParams = new URLSearchParams();
+            if (cashback_enabled) filterParams.append("cashback_enabled", cashback_enabled.toString())
+            if (_sort) { filterParams.append("_sort", _sort.toString()), filterParams.append("_order", "desc") }
+            if (nameSearch) filterParams.append("name_like", nameSearch.toString())
+            if (category) filterParams.append("cats", category.toString())
+            if (Alphabetical) filterParams.append("name_like", Alphabetical.toString())
+            if (status) filterParams.append("status", status.toString())
+
+            await new Promise((resolve) => setTimeout(resolve, 500)); // simulate delay
+
+            const stores: Stores = await ((await axios.get(`http://localhost:3001/stores?_page=${pageParam}&_limit=18&${filterParams}`)).data)
+
+            return {
+                data: stores,
+                nextPage: stores.length > 0 ? pageParam + 1 : null,
+            }
+        },
+        initialPageParam: 1,
+        getNextPageParam: (lastpage) => lastpage.nextPage,
+    })
+}
+
+
+// export const getPagginatedStores = () => useSuspenseInfiniteQuery()
 
 
 
